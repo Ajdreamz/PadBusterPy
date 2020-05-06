@@ -1,0 +1,43 @@
+PadBusterPy - Automated script for performing Padding Oracle attacks using Python
+
+Author in Python: Ajay Kumar Guttikonda 
+Original Author in Perl: Brian Holyfield - Gotham Digital Science (labs@gdssecurity.com)
+
+PadBusterPy is a python script for automating Padding Oracle Attacks. PadBuster  
+provides the capability to decrypt arbitrary ciphertext, encrypt arbitrary plaintext, 
+and perform automated response analysis to determine whether a request is vulnerable 
+to padding oracle attacks.
+
+Why when we have already padbuster.pl ?
+This is an improvement to padbuster.pl to make parallel requests and response for quicker TAT using python's concurrent.futures concept.
+
+I am not a python expert but, I have searched the web for understannding and coded as nice as possibe.
+I might have re-used some of the code from other projects of python from the web. 
+Please let me know if the code used looks inspired from your code; I shall add your name to the credits depending on the proof of inspiration.
+
+Known Issues:
+Sometimes Block retry is not working.Its random and full restart it works fine.So, unable to fix the same at this point of time.
+
+Testing:
+I have tested with sample cookies decrypt mode and encrypt mode and it looks ok.
+Timing is better and improved compared to the native script in perl as the requests are made in parallel.
+
+Drawback:
+In native perl padbuster, requests are made upto the success byte and the remaining requests are ignored.
+As we are doing parallel requests all 255 request are sent and still timing is a lot better than native padbuster.
+
+Usage:
+python3 padbusterpy.py http://example.com:port/profile.php zJXamI7u7sSL60O254KaWrsdVtnkVWo3pTJj1YtE0awo88d%2FwI9UYQ%3D%3D 8 
+--cookies iknowmag1k=zJXamI7u7sSL60O254KaWrsdVtnkVWo3pTJj1YtE0awo88d%2FwI9UYQ%3D%3D --verbose True --threads=20
+
+python3 padbusterpy.py http://example.com:port/profile.php zJXamI7u7sSL60O254KaWrsdVtnkVWo3pTJj1YtE0awo88d%2FwI9UYQ%3D%3D 8 --cookies "iknowmag1k=zJXamI7u7sSL60O254KaWrsdVtnkVWo3pTJj1YtE0awo88d%2FwI9UYQ%3D%3D" --plaintext "{\"user\":\"test\",\"role\":\"admin\"}" --threads=20
+
+Help:
+python3 padbusterpy.py -h
+
+Credits:
+padbusterpy is a mostly an exact replica of the PadBuster, an automated script for performing Padding Oracle attacks, developed by Brian Holyfield of Gotham Digital Science.Improved TAT using python.
+Also credits to team at https://github.com/s0md3v/Photon as i have re-used their proxy validation code.
+
+PadBusterPy is released under the Reciprocal Public License 1.5 (RPL1.5)
+http://www.opensource.org/licenses/rpl1.5
